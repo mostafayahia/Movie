@@ -1,5 +1,4 @@
 # Movie
-
 you have to replace MyMovieDbApiKey in the file app/build.gradle with your api key (to get yours, you can create account and get one https://www.themoviedb.org/account/signup)
 
 Several lines of codes are copied and pasted (sometimes the whole files) from this project https://github.com/udacity/Sunshine-Version-2 then I've modified it (if needed) to achieve my app functionality
