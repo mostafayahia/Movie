@@ -1,61 +1,82 @@
 package com.android.example.movie;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ActionBarActivity implements PosterFragment.Callback {
+
+    private boolean mTwoPane;
+    static final String DETAILFRAGMENT_TAG = "DFTAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // adding grid fragment programmatically
-        if (savedInstanceState == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.container, new GridFragment())
+        if (findViewById(R.id.movie_detail_container) != null) {
+            // The detail container view will be present only in the large-screen layouts
+            // (res/layout-sw600dp). If this view is present, then the activity should be
+            // in two-pane mode.
+            mTwoPane = true;
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.movie_detail_container, new DetailFragment(), DETAILFRAGMENT_TAG)
+                        .commit();
+            }
+        } else {
+            mTwoPane = false;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // starting settings activity if settings action button is pressed
+        if (item.getItemId() == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onItemSelected(int position) {
+        if (mTwoPane) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            Bundle args = new Bundle();
+            args.putParcelable(PosterFragment.MOVIE_INFO_DATA,
+                    PosterFragment.mMovieInfoArray[position]);
+
+            DetailFragment fragment = new DetailFragment();
+            fragment.setArguments(args);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.movie_detail_container, fragment, DETAILFRAGMENT_TAG)
                     .commit();
+        } else {
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra(PosterFragment.MOVIE_INFO_DATA,
+                    PosterFragment.mMovieInfoArray[position]);
+            startActivity(intent);
+
         }
     }
 
-    public static class GridFragment extends Fragment {
-
-        // using this tag for logging (debugging)
-        private final String LOG_TAG = GridFragment.class.getSimpleName();
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Inflate the layout for this fragment
-            View rootView =  inflater.inflate(R.layout.fragment_grid, container, false);
-
-            // first phase passing dummy data to the grid view
-            String[] testStrs = {"test1", "test2", "test3"};
-            List<String> data = Arrays.asList(testStrs);
-
-            // getting grid view from the fragment root view then set to it dummy data
-            GridView gridView = (GridView)rootView.findViewById(R.id.gridView);
-            gridView.setAdapter(
-                    new ArrayAdapter<String>(getActivity(), // activity that contain the fragment
-                            R.layout.list_item_grid,
-                            R.id.list_item_grid_textView,
-                            data)
-            );
-
-
-            return rootView;
-        }
-    }
 }

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- important: scroll view must only host one child -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.example.movie.DetailActivity"
+    android:fillViewport="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--
+            I choose "headline" for title font size
+            according to this link https://material.google.com/style/typography.html#typography-styles
+             -->
+        <TextView
+            android:id="@+id/detail_title_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/movieGreen"
+            android:gravity="center_vertical"
+            android:padding="32dp"
+            android:text="New Text"
+            android:textColor="#ffffff"
+            android:textSize="24sp" />
+
+        <!-- this is just a wrapper layout just for making side margin for the all elements lying into it -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- poster -->
+                <ImageView
+                    android:id="@+id/detail_poster_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <!-- release year, running time, rate, favorite button-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="32dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/detail_release_year_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <TextView
+                        android:id="@+id/detail_running_time_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/detail_rate_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <Button
+                        android:id="@+id/detail_favorite_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="true"
+                        android:padding="8dp"
+                        android:textColor="#ffffff"
+                        android:background="@color/movieGreen"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- plot synopsis, trailers, reviews-->
+            <TextView
+                android:id="@+id/detail_plot_synopsis_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView style="@style/ruler"/>
+
+            <TextView
+                android:id="@+id/detail_trailers_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_trailers"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/detail_trailer1_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/touch_selector"
+                android:text="@string/str_play_trailer1"/>
+
+            <TextView
+                android:id="@+id/detail_trailer1_ruler"
+                style="@style/ruler"/>
+
+            <Button
+                android:id="@+id/detail_trailer2_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/touch_selector"
+                android:text="@string/str_play_trailer2" />
+
+            <TextView
+                android:id="@+id/detail_trailer2_ruler"
+                style="@style/ruler"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_reviews"/>
+
+            <TextView
+                android:id="@+id/detail_reviews_content_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

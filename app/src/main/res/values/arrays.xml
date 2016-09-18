@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- these arrays used by sorting preference -->
+    <array name="pref_sorting_options">
+        <item>@string/pref_sorting_option_popular</item>
+        <item>@string/pref_sorting_option_top_rated</item>
+        <item>@string/pref_sorting_option_favorites</item>
+    </array>
+
+    <array name="pref_sorting_values">
+        <item>@string/pref_sorting_value_popular</item>
+        <item>@string/pref_sorting_value_top_rated</item>
+        <item>@string/pref_sorting_value_favorites</item>
+    </array>
+</resources>

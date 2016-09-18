@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">Movie</string>
+    <string name="title_activity_detail">DetailActivity</string>
+
+    <!-- these elements are used for sorting preference -->
+    <string name="pref_sorting_title">Sorting by</string>
+    <string name="pref_sorting_key">sorting</string>
+    <string name="pref_sorting_default">@string/pref_sorting_value_popular</string>
+    <string name="pref_sorting_option_popular">Popularity</string>
+    <string name="pref_sorting_option_top_rated">Top Rated</string>
+    <string name="pref_sorting_option_favorites">Favorites</string>
+    <string name="pref_sorting_value_popular">popular</string>
+    <string name="pref_sorting_value_top_rated">top_rated</string>
+    <string name="pref_sorting_value_favorites">favorites</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- error message to indicate there is not internet connection -->
+    <string name="msg_err_no_internet">There is NO internet connection</string>
+
+    <!-- strings to indicate if the movie in favorite movie table or not -->
+    <string name="state_not_in_favorite">NOT IN FAVORITE</string>
+    <string name="state_in_favorite">IN FAVORITE</string>
+
+    <!-- just titles or text -->
+    <string name="str_trailers">Trailers</string>
+    <string name="str_play_trailer1">Play Trailer 1</string>
+    <string name="str_play_trailer2">Play Trailer 2</string>
+    <string name="str_reviews">Reviews</string>
+
 </resources>
